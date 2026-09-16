@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>penink VPN — 安全隧道 | 一鍵連線</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── 背景光暈 ── -->
+<div class="bg-glow glow-1"></div>
+<div class="bg-glow glow-2"></div>
+<div class="bg-glow glow-3"></div>
+
+<!-- ── 導航列 ── -->
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="logo">
+            <div class="logo-icon">🔒</div>
+            <span>penink VPN</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">功能</a>
+            <a href="#how">使用方式</a>
+            <a href="#download">下載</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ── Hero 區塊 ── -->
+<header class="hero" id="download">
+    <div class="hero-inner">
+        <div class="badge">Android · 免費 · 開源</div>
+        <h1>
+            <span class="gradient-text">penink VPN</span>
+            <br>一鍵穿過防火牆
+        </h1>
+        <p class="hero-desc">
+            透過 WebSocket + TLS 加密隧道，安全連回你家裡的網路。<br>
+            支援任意自訂節點，完全本地儲存，無第三方伺服器。
+        </p>
+
+        <a id="downloadBtn" class="download-btn" href="penink-vpn.apk" download="penink-vpn.apk">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            下載 APK
+        </a>
+        <p class="version" id="versionText">v1.0.0 · Android 8.0+</p>
+
+        <div class="hero-visual">
+            <div class="phone-mock">
+                <div class="phone-status-bar">
+                    <span>12:00</span>
+                    <span>⚡ 88%</span>
+                </div>
+                <div class="phone-screen">
+                    <div class="phone-app-name">penink VPN</div>
+                    <div class="phone-node-card">
+                        <div class="phone-node-label">目前的節點</div>
+                        <div class="phone-node-name">🏠 我的家裡伺服器</div>
+                        <div class="phone-node-addr">home.example.com:443</div>
+                    </div>
+                    <div class="phone-btn-circle">
+                        <div class="phone-btn-icon">⏻</div>
+                    </div>
+                    <div class="phone-status">已連線</div>
+                    <div class="phone-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ── 功能區塊 ── -->
+<section class="features" id="features">
+    <div class="features-inner">
+        <h2>為什麼選擇 <span class="gradient-text-sm">penink VPN</span></h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧩</div>
+                <h3>節點管理</h3>
+                <p>隨意新增、編輯、刪除多個伺服器節點。每個節點包含位址、連接埠、密鑰，完整參數化。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>一鍵連線</h3>
+                <p>主畫面超大按鈕，輕鬆切換連線 / 斷線。所有網路流量自動導入加密隧道。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>WebSocket + TLS</h3>
+                <p>透過 WSS (443 Port) 傳輸，完美偽裝成一般 HTTPS 流量，繞過校園防火牆。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>本地資料庫</h3>
+                <p>所有節點資料儲存在你手機裡的 Room 資料庫，不會外傳到任何第三方伺服器。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>你自己的伺服器</h3>
+                <p>配合家庭伺服器使用，所有資料直接送到你家，沒有中間人。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🆓</div>
+                <h3>完全免費</h3>
+                <p>開源專案，無廣告、無追蹤、無訂閱。只需一台能開 TUN 的 Linux 伺服器。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── 使用方式 ── -->
+<section class="how" id="how">
+    <div class="how-inner">
+        <h2>三步開始</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>部署伺服器</h3>
+                <p>在家庭伺服器（Linux）安裝 Node.js，執行 <code>server/server.js</code>，設定 NAT 轉發。支援 Cloudflare Tunnel 自動簽發 TLS 憑證。</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>安裝 App</h3>
+                <p>下載 APK 安裝到手機，在「節點管理」頁面新增你的伺服器位址、連接埠、密鑰。</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>一鍵連線</h3>
+                <p>回到主畫面，點一下大圓按鈕。所有流量即刻透過 WebSocket 隧道送到你家的網路。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── 下載 CTA ── -->
+<section class="cta">
+    <div class="cta-inner">
+        <h2>準備好了嗎？</h2>
+        <p>下載 penink VPN，開始你自己的私人隧道。</p>
+        <a class="download-btn download-btn-lg" href="penink-vpn.apk" download="penink-vpn.apk">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5v18M26 14l-12 12-12-12"/></svg>
+            下載 penink VPN APK
+        </a>
+        <p class="version">v1.0.0 · 無廣告 · 無追蹤</p>
+    </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+    <p>penink VPN &copy; 2026 — 安全、免費、開源</p>
+    <p class="footer-sub">本專案僅供合法用途。請遵守你所在地區的法律與學校網路使用規範。</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  penink-vpn:
+    build: .
+    container_name: penink-vpn
+    restart: unless-stopped
+    privileged: true
+    network_mode: host        # 讓 iptables/TUN 直接作用於主機網路
+    cap_add:
+      - NET_ADMIN
+    environment:
+      PASSWORD: "${PASSWORD:-CHANGE_ME}"   # 用 .env 取代為你的密鑰
+      WS_PORT: "9543"
+      TUN_ADDR: "10.27.0.1/24"
+    volumes:
+      - /dev/net/tun:/dev/net/tun

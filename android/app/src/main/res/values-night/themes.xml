@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.PeninkVpn" parent="android:Theme.Material.NoActionBar" />
+</resources>

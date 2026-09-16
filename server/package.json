@@ -1,0 +1,17 @@
+{
+  "name": "penink-vpn-server",
+  "version": "1.0.0",
+  "description": "penink VPN 伺服器端 — WebSocket <-> TUN",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18 <24",
+    "note": "tuntap2 原生 addon 需在 Linux 上編譯（本機 macOS 開發可用 nvm 裝 Node 20）"
+  },
+  "scripts": {
+    "start": "sudo node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "tuntap2": "^0.9.1"
+  }
+}
