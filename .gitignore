@@ -10,6 +10,9 @@ release/*.keystore
 release/*.jks
 server/.env
 
+# ── CI（需 workflow scope 授權後再由 enable-ci.sh 推送）──
+.github/workflows/
+
 # ── 一般 ──
 .DS_Store
 *.iml

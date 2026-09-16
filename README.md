@@ -4,6 +4,23 @@
 
 ---
 
+## 🚀 已上線！
+
+| 項目 | 網址 |
+|------|------|
+| 下載網站 | **https://penink-vpn.pages.dev**（Cloudflare Pages） |
+| 原始碼 | https://github.com/penink-WH/penink-vpn |
+| 正式 APK | `release/penink-vpn.apk`（已簽名，1.1MB） |
+
+## 一鍵部署
+
+```bash
+./deploy.sh      # 建置 APK → 上傳網站 → 部署 Cloudflare → 推 GitHub
+./enable-ci.sh   # （選用）啟用 GitHub Actions 自動建置 CI
+```
+
+---
+
 ## 專案結構
 
 ```
