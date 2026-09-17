@@ -1,15 +1,18 @@
 services:
   penink-vpn:
-    build: .
+    image: penink-vpn-server
     container_name: penink-vpn
     restart: unless-stopped
     privileged: true
-    network_mode: host        # 讓 iptables/TUN 直接作用於主機網路
     cap_add:
       - NET_ADMIN
+    ports:
+      - "9543:9543"          # Mac/主機能用 localhost:9543 存取
     environment:
-      PASSWORD: "${PASSWORD:-CHANGE_ME}"   # 用 .env 取代為你的密鑰
+      PASSWORD: "${PASSWORD:-CHANGE_ME}"   # 在 .env 設定你的密鑰
       WS_PORT: "9543"
       TUN_ADDR: "10.27.0.1/24"
     volumes:
       - /dev/net/tun:/dev/net/tun
+    security_opt:
+      - seccomp:unconfined
