@@ -1,5 +1,6 @@
 package com.penink.vpn.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.net.VpnService
 import android.widget.Toast
@@ -29,6 +30,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -55,6 +58,27 @@ fun MainScreen(viewModel: NodeViewModel, onOpenNodes: () -> Unit) {
     val isConnected by VpnState.isRunning.collectAsState()
     val statusText by VpnState.status.collectAsState()
 
+    fun startVpnService() {
+        val node = viewModel.selected.value ?: return
+        ContextCompat.startForegroundService(
+            context,
+            Intent(context, VpnTunnelService::class.java).apply {
+                action = VpnTunnelService.ACTION_CONNECT
+                putExtra(VpnTunnelService.EXTRA_NODE_ID, node.id)
+            }
+        )
+    }
+
+    val vpnPrepareLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            startVpnService()
+        } else {
+            Toast.makeText(context, "未允許 VPN 權限，無法連線", Toast.LENGTH_LONG).show()
+        }
+    }
+
     fun toggleConnection() {
         if (isConnected) {
             context.startService(
@@ -70,16 +94,9 @@ fun MainScreen(viewModel: NodeViewModel, onOpenNodes: () -> Unit) {
             }
             val prepare = VpnService.prepare(context)
             if (prepare != null) {
-                context.startActivity(prepare)
-                Toast.makeText(context, "請允許 VPN 權限後，再點一次「連線」", Toast.LENGTH_LONG).show()
+                vpnPrepareLauncher.launch(prepare)
             } else {
-                ContextCompat.startForegroundService(
-                    context,
-                    Intent(context, VpnTunnelService::class.java).apply {
-                        action = VpnTunnelService.ACTION_CONNECT
-                        putExtra(VpnTunnelService.EXTRA_NODE_ID, node.id)
-                    }
-                )
+                startVpnService()
             }
         }
     }

@@ -10,19 +10,18 @@
 |------|------|
 | 下載網站 | **https://penink-vpn.pages.dev**（Cloudflare Pages） |
 | 原始碼 | https://github.com/penink-WH/penink-vpn |
-| 正式 APK | `release/penink-vpn.apk`（已簽名，1.1MB） |
-| **VPN 伺服器（已在 Mac Colima VM 跑起來了）** | **`https://vpn.example.com`** |
+| 正式 APK | `release/penink-vpn.apk`（已簽名） |
 
 ### 在 Android App 連線設定
 
 | 欄位 | 值 |
 |------|------|
-| 位址（Host） | `vpn.example.com` |
-| 連接埠 | `443` |
-| 密鑰（Password） | `REDACTED-PASSWORD` |
+| 位址（Host） | 向管理員索取 |
+| 連接埠 | 443 |
+| 密鑰（Password） | 向管理員索取 |
 | 使用 TLS | ✅ 啟用 |
 
-> **Mac 架構**：Docker container（Colima Linux VM）跑 Node.js server（TUN + NAT），透過 Cloudflare Tunnel 隧道（`config-penink.yml`）以 HTTPS/WSS 反向代理在 `vpn.example.com`。無需 Linux 實體主機。
+> **架構**：Android App（Kotlin + Compose）透過 WebSocket(TLS) 隧道連回 Docker 容器內的 Node.js 伺服器（Colima Linux VM）。透過 Cloudflare Tunnel 反向代理。無需 Linux 實體主機。
 
 ## 一鍵部署
 
